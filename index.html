@@ -28,12 +28,14 @@
                     <option value="17">Science & Nature</option>
                     <option value="23">History</option>
                 </select>
-                <select id="difficulty-select">Choose a difficulty</select>
-                    <option value></option>
-                    <option value></option>
-                    <option value></option>
+                <select id="difficulty-select">
+                    <option value="">Any Difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
             </div>
-            <button id="btn1" onclick= initQuiz();>PLAY</button>
+            <button id="btn1" onclick="initQuiz()">PLAY</button>
         </div>
 
 
@@ -79,7 +81,11 @@
 
             <div class="start-container">
                 <div id="lives-container">
-                    <p>Lives: <img id="lives" src="Images/HeartFrame1.png"></img></p>
+                    <p>Lives:
+                        <img class="heart" src="Images/heart.png">
+                        <img class="heart" src="Images/heart.png">
+                        <img class="heart" src="Images/heart.png">
+                    </p>
                 </div>
             </div>
         </div>

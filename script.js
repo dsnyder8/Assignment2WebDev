@@ -12,6 +12,13 @@ let streak = 0;
 let questionsAnswered = 0;
 
 
+function removeHeart() {
+  const hearts = document.querySelectorAll(".heart");
+  if (hearts.length > 0) {
+    hearts[hearts.length - 1].remove();
+  }
+}
+
 function markDot(index, correct) {
   let dots = document.querySelectorAll(".progress-dot");
   if (dots[index]) {
@@ -33,6 +40,24 @@ async function initQuiz() {
   document.getElementById("welcome-screen").style.display = "none";
   document.getElementById("game-container").style.display = "block";
 
+  const difficulty = document.getElementById("difficulty-select").value;
+  if (difficulty === "easy") {
+    lives = 5;
+  } else if (difficulty === "hard") {
+    lives = 3;
+  } else {
+    lives = 4;
+  }
+
+  const livesContainer = document.getElementById("lives-container");
+  livesContainer.innerHTML = 'Lives: ';
+  for (let i = 0; i < lives; i++) {
+    const heart = document.createElement("img");
+    heart.className = "heart";
+    heart.src = "Images/heart.png";
+    livesContainer.appendChild(heart);
+  }
+
   const data = await fetchData();
   questions = data.results;
   displayQuestionAndAnswers();
@@ -47,6 +72,10 @@ async function fetchData() {
     let apiUrl = `https://opentdb.com/api.php?amount=10&type=multiple`;
     if (categoryID) {
       apiUrl += `&category=${categoryID}`;
+    }
+    const difficultySelect = document.getElementById("difficulty-select").value;
+    if (difficultySelect) {
+      apiUrl += `&difficulty=${difficultySelect}`;
     }
     const response = await fetch(apiUrl);
 
@@ -126,18 +155,7 @@ function displayQuestionAndAnswers() {
         });
         
         lives--;
-        //preload the page with 3 lives at init()
-        //when lives are 2 load the 2 hearts
-        if(lives === 2){
-            const imageElement = document.getElementById("lives");
-            imageElement.src = "Images/HeartFrame2.png";
-        }
-        //when lives are 1 load 1 heart 
-        if(lives ===1){
-            const imageElement = document.getElementById("lives");
-            imageElement.src = "Images/HeartFrame3.png";
-        }
-         document.getElementById("lives").textContent = lives;
+        removeHeart();
         markDot(questionIndex, false);
          if (lives <= 0) {
           btn.disabled = true;
@@ -212,7 +230,7 @@ function startTimer() {
       clearInterval(timerInterval);
       markDot(questionIndex, false);
       lives--;
-      document.getElementById("lives").textContent = lives;
+      removeHeart();
       if (lives === 0) {
         gameOver();
         return;
