@@ -10,13 +10,10 @@
     </head>
     <body class="overall_page">
 
-        <!-- Header Image / Logo for the game -->
-        <header>
-            <img class="title" src="Images/logo.png" alt="Trivia Blast Header">
-        </header>
-        
+        <header></header>
 
         <div id="welcome-screen" class="btn">
+            <img class="title" src="Images/logo.png" alt="Trivia Blast Header">
             <div class="selector-container">
                 <label for="category-select">Choose a Topic:</label>
                 <select id="category-select">
@@ -87,11 +84,10 @@
         <!-- We want to hide this end game content to appear only when the game is over -->
         <div id="game-over-container" style="display:none;">
             <div class="final-scores-container">
-                <h2 id="game-over-heading"> Game Over and Nice Try!</h2>
-                <p> Here is your scores:</p>
-                    <p id="final-score">Final Score: </p>
-                    <p id="questions-correct">Questions Correct: </p>   
-                    <p id="high-score"> Personal Best: 0 </p>
+                <h2 id="game-over-heading">Game Over!</h2>
+                <p id="final-score">Score: </p>
+                <p id="questions-correct">Correct Answers: </p>
+                <p id="high-score">Best Score: 0</p>
                     <button id="restart-btn" onclick="location.reload()">Play Again</button>
             </div>
         </div>

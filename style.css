@@ -5,19 +5,19 @@
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
-  border: 5px solid #007bff;
-  padding: 20px;
+  padding: 0;
   margin: 0;
   box-sizing: border-box;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .title {
   display: block;
-  margin: auto;
+  margin: 0 auto;
   width: 300px;
   height: auto;
-  max-width: 100%;
+  max-width: 90%;
 }
 
 .title.title-animating {
@@ -34,31 +34,59 @@
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
-  gap: 30px;
+  gap: 20px;
+  min-height: 100vh;
 }
 
 #btn1 {
-  width: 200px;
+  width: 250px;
   height: 80px;
-  color: antiquewhite;
-  background-color: rgb(19, 19, 168);
-  font-size: 36px;
-  border: 3px solid black;
-  border-radius: 8px;
+  color: white;
+  background-color: #46178f;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
+  box-shadow: 0 4px 0 #2e0f5e;
+  transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .selector-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 #category-select,
 #difficulty-select {
     font-size: 18px;
-    padding: 5px;
+    padding: 10px 16px;
+    border: 2px solid #46178f;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2346178f' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+#category-select:hover,
+#difficulty-select:hover {
+    border-color: #6b3fa0;
+}
+
+#category-select:focus,
+#difficulty-select:focus {
+    outline: none;
+    border-color: #46178f;
+    box-shadow: 0 0 0 3px rgba(70, 23, 143, 0.2);
 }
 
 /* Dakotas/Luke CSS for the actual game itself
@@ -193,7 +221,12 @@
 }
 
 #btn1:hover{
-    background-color: rgb(11, 93, 165);
+    background-color: #5a1db3;
+}
+
+#btn1:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #2e0f5e;
 }
 p{
     margin: 1px;
@@ -208,32 +241,50 @@ h2{
     margin: 1px;
 }
 
+#game-over-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
 .final-scores-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    border: 3px solid black;
-    border-radius: 12px;
+    padding: 40px 60px;
+    background-color: white;
+    border: 3px solid #46178f;
+    border-radius: 16px;
     max-width: 500px;
     margin: 20px auto;
+    gap: 8px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 #restart-btn{
-    width: 140px;
-    height: 50px;
-    color: antiquewhite;
-    background-color: rgb(19, 19, 168);
-    font-size: 20px;
-    border: 3px solid black;
-    border-radius: 8px;
+    width: 180px;
+    height: 55px;
+    color: white;
+    background-color: #46178f;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
+    box-shadow: 0 4px 0 #2e0f5e;
+    transition: transform 0.1s, box-shadow 0.1s;
 }
 
 #restart-btn:hover{
-    background-color: rgb(11, 93, 165);
+    background-color: #5a1db3;
+}
+
+#restart-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #2e0f5e;
 }
 
 #progress-container {
