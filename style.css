@@ -159,6 +159,32 @@ h2{
 }
 
 
+#progress-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px auto;
+}
+
+.progress-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: 2px solid #999;
+    display: inline-block;
+}
+
+.progress-dot.correct {
+    background-color: #28a745;
+    border-color: #1e7e34;
+}
+
+.progress-dot.wrong {
+    background-color: #dc3545;
+    border-color: #bd2130;
+}
+
 @media (max-width: 800px) {
   .title {
     font-size: 50px;

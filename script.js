@@ -12,6 +12,22 @@ let streak = 0;
 let questionsAnswered = 0;
 
 
+function markDot(index, correct) {
+  let dots = document.querySelectorAll(".progress-dot");
+  if (dots[index]) {
+    dots[index].classList.add(correct ? "correct" : "wrong");
+  }
+}
+
+function nextQuestion() {
+  questionIndex++;
+  if (questionIndex >= questions.length) {
+    gameOver();
+    return;
+  }
+  displayQuestionAndAnswers();
+}
+
 /*Initialize the quiz, fetch the questions and answer from the api and call displayQuestionAndAnswers */
 async function initQuiz() {
   document.getElementById("welcome-screen").style.display = "none";
@@ -82,15 +98,15 @@ function displayQuestionAndAnswers() {
           button.disabled = true;
         });
         document.getElementById("score").textContent = score;
+        markDot(questionIndex, true);
         //we want to reset the button colors after 2 seconds and then go to the next question
         setTimeout(() => {
           document.querySelectorAll(".answer-btn").forEach((button) => {
             button.style.backgroundColor = "";
             button.disabled = false;
           });
-          questionIndex++;
           clearInterval(timerInterval);
-          displayQuestionAndAnswers();
+          nextQuestion();
         }, 2000);
       } else {
         //if the answer they select is wrong change the background color to red and turn off the buttons and take away a life
@@ -122,6 +138,7 @@ function displayQuestionAndAnswers() {
             imageElement.src = "Images/HeartFrame3.png";
         }
          document.getElementById("lives").textContent = lives;
+        markDot(questionIndex, false);
          if (lives <= 0) {
           btn.disabled = true;
           //stop the lives counter at 0;
@@ -137,9 +154,8 @@ function displayQuestionAndAnswers() {
             button.style.backgroundColor = "";
             button.disabled = false;
           });
-          questionIndex++;
           clearInterval(timerInterval);
-          displayQuestionAndAnswers();
+          nextQuestion();
         }, 2000);
       }
     };
@@ -155,6 +171,13 @@ function gameOver() {
   });
         document.getElementById("game-over-container").style.display = "block";
         document.getElementById("game-container").style.display = "none";
+
+    if (lives > 0) {
+      document.getElementById("game-over-heading").textContent = "Congratulations, You Win!";
+      document.getElementById("game-over-heading").style.color = "green";
+    } else {
+      document.getElementById("game-over-heading").textContent = "Game Over and Nice Try!";
+    }
 
     let highScore = localStorage.getItem("highScore") || 0;
 
@@ -186,14 +209,14 @@ function startTimer() {
     timerElement.textContent = timeRemaining;
     if (timeRemaining <= 0) {
       clearInterval(timerInterval);
+      markDot(questionIndex, false);
       lives--;
       document.getElementById("lives").textContent = lives;
       if (lives === 0) {
         gameOver();
         return;
       }
-      questionIndex++;
-      displayQuestionAndAnswers();
+      nextQuestion();
     }
   }, 1000);
 }
