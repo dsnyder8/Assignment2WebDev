@@ -242,14 +242,16 @@ function gameOver() {
   answerButtons.forEach((btn) => {
     btn.disabled = true;
   });
-        document.getElementById("game-over-container").style.display = "block";
+        document.getElementById("welcome-screen").style.display = "none";
+        document.querySelector("header").style.display = "none";
+        document.getElementById("game-over-container").style.display = "flex";
         document.getElementById("game-container").style.display = "none";
 
     if (lives > 0) {
-      document.getElementById("game-over-heading").textContent = "Congratulations, You Win!";
+      document.getElementById("game-over-heading").textContent = "You Win!";
       document.getElementById("game-over-heading").style.color = "green";
     } else {
-      document.getElementById("game-over-heading").textContent = "Game Over and Nice Try!";
+      document.getElementById("game-over-heading").textContent = "Game Over!";
       document.getElementById("game-over-heading").style.color = "red";
     }
 
@@ -260,13 +262,13 @@ function gameOver() {
     if (score > highScore) {
       localStorage.setItem("highScore", score);
       highScore = score;
-      document.getElementById("final-score").textContent = `Final Score: ${score}`;
-    document.getElementById("questions-correct").textContent = `Questions Correct: ${questionsAnswered}`;
-    document.getElementById("high-score").textContent = `High Score: ${highScore}` + " New High Score!";
+      document.getElementById("final-score").textContent = `Score: ${score}`;
+    document.getElementById("questions-correct").textContent = `Correct Answers: ${questionsAnswered}`;
+    document.getElementById("high-score").textContent = `Best Score: ${highScore} - New Record!`;
     }else{
-      document.getElementById("final-score").textContent = `Final Score: ${score}`;
-    document.getElementById("questions-correct").textContent = `Questions Correct: ${questionsAnswered}`;
-    document.getElementById("high-score").textContent = `Highest Score: ${highScore}`;
+      document.getElementById("final-score").textContent = `Score: ${score}`;
+    document.getElementById("questions-correct").textContent = `Correct Answers: ${questionsAnswered}`;
+    document.getElementById("high-score").textContent = `Best Score: ${highScore}`;
     }
     
 }
