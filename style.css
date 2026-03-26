@@ -227,8 +227,10 @@
     font-weight: bold;
 }
 
-.answer-btn:hover {
-    background-color: #4c9aee;
+@media (hover: hover) {
+  .answer-btn:hover {
+      background-color: #4c9aee;
+  }
 }
 
 .answer-btn {
@@ -516,6 +518,7 @@ h2{
   #difficulty-select {
     font-size: 14px;
     padding: 8px 12px;
+    padding-right: 32px;
   }
 
   .final-scores-container {
