@@ -12,9 +12,6 @@ export async function fetchData() {
     // If we fetched less than 5000 milliseconds (5 seconds) ago...
     if (lastFetch && now - lastFetch < 5000) {
       const timeToWait = 5000 - (now - lastFetch);
-      console.warn(
-        `⏳ Rate limit protection! Waiting ${Math.round(timeToWait / 1000)}s before fetching...`,
-      );
 
       // Pause the code execution until the 5 seconds are fully up
       await new Promise((resolve) => setTimeout(resolve, timeToWait));
