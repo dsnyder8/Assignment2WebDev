@@ -46,7 +46,7 @@ initQuiz(): The starting function that sets up the game and begins the countdown
 
 displayQuestionAndAnswers(): Shows the current question and handles the shuffled answer buttons
 
-![Current Architecture Diagram](proposed_modular_changes.png)
+![Current Architecture Diagram](proposed.png)
 
 Task2)
 
